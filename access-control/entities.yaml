@@ -5,25 +5,15 @@ kind: User
 metadata:
   name: imyashkale
 spec:
-  memberOf: [guests]
+  memberOf: [admin]
   profile:
     name: imyashkale
----
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-user
-apiVersion: backstage.io/v1alpha1
-kind: User
-metadata:
-  name: extreamist
-spec:
-  memberOf: [guests]
-  profile:
-    name: extreamist
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: guests
+  name: admin
 spec:
   type: team
   children: []
@@ -34,7 +24,7 @@ kind: System
 metadata:
   name: examples
 spec:
-  owner: guests
+  owner: admin
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1
@@ -44,7 +34,7 @@ metadata:
 spec:
   type: website
   lifecycle: experimental
-  owner: guests
+  owner: admin
   system: examples
   providesApis: [example-grpc-api]
 ---
@@ -56,7 +46,7 @@ metadata:
 spec:
   type: grpc
   lifecycle: experimental
-  owner: guests
+  owner: admin
   system: examples
   definition: |
     syntax = "proto3";
