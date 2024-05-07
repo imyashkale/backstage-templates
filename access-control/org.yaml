@@ -1,0 +1,55 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: imyashkale
+spec:
+  memberOf: [admin]
+  profile:
+    name: imyashkale
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: admin
+spec:
+  type: team
+  children: []  
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: examples
+spec:
+  owner: admin
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-website
+spec:
+  type: website
+  lifecycle: experimental
+  owner: admin
+  system: examples
+  providesApis: [example-grpc-api]
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: example-grpc-api
+spec:
+  type: grpc
+  lifecycle: experimental
+  owner: guests
+  system: examples
+  definition: |
+    syntax = "proto3";
+
+    service Exampler {
+      rpc Example (ExampleMessage) returns (ExampleMessage) {};
+    }
+
+    message ExampleMessage {
+      string example = 1;
+    };
